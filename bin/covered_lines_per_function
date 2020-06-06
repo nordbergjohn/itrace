@@ -1,0 +1,11 @@
+#!/usr/bin/awk -f
+# Given pretty printed addr2line output,
+# this script prints the function name and number of lines reported per function
+# The number of lines are subtracted by 2 to remove function prologue and epilogue
+# (Assumption: The input is sorted and unique)
+BEGIN { functionName=""; numberOfLines=0;} 
+{if ($1 != functionName) 
+  {if (numberOfLines != 0) {print functionName, numberOfLines-2;} functionName=$1; numberOfLines=1;} 
+   else numberOfLines++;} 
+END {print functionName, numberOfLines-2}
+

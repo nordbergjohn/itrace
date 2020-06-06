@@ -35,7 +35,6 @@ int main(int argc, char **argv)
       
       struct user_regs_struct regs;
       ptrace(PTRACE_GETREGS, child, NULL, &regs);
-      ptrace(PTRACE_PEEKTEXT, child, regs.rip, NULL);
       printf("%llx\n", regs.rip); 
       ptrace(PTRACE_SINGLESTEP, child, NULL, NULL);
     }

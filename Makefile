@@ -9,7 +9,7 @@ test_prog:
 	strip -g test_prog
 
 run_test: cov test_prog
-	./cov test_prog | addr2line -e test_prog.dbg | grep -v ? | uniq
+	./cov test_prog | addr2line -e test_prog.dbg -f -p | grep -v ? | uniq
 
 clean:
 	rm -rf cov test_prog
