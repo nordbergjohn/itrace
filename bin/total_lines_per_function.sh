@@ -8,5 +8,5 @@ if [[ $ARGC -ne $EXPECTED_ARGUMENTS ]]; then
   exit -1;
 fi
 
-gdb -batch -ex "exec-file $1" -ex "symbol-file $2" -ex "disass /s $3" | awk 'BEGIN {COUNT=0} /^[0-9]+/{STORED=$1} /^ +0x/ {if (STORED != 0) {++COUNT; STORED=0}} END {print COUNT}'
+gdb -batch -ex "exec-file $1" -ex "symbol-file $2" -ex "disass /s $3" | awk 'BEGIN {COUNT=0} /^[0-9]+/{STORED=$1} /^ +0x/ {if (STORED != 0) {++COUNT; STORED=0}} END {print COUNT-2}'
 
